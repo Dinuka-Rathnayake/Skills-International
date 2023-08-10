@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Login - Skill International": {
+      "commandName": "Project",
+      "sqlDebugging": true,
+      "nativeDebugging": true
+    }
+  }
+}
