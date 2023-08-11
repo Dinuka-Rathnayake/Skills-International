@@ -21,6 +21,7 @@ namespace Login___Skill_International
             InitializeComponent();
             InitializeRadioButtons();
         }
+        SqlConnection conn = new SqlConnection(@"Data Source=MSI-DINUKA\SQLEXPRESS;Initial Catalog=Student;Integrated Security=True");
 
         //initialize radio buttons
         private void InitializeRadioButtons()
@@ -38,6 +39,67 @@ namespace Login___Skill_International
 
         private void button2_Click(object sender, EventArgs e)
         {
+            int regNo = int.Parse(combo_regno.Text);
+            String firstName = txt_firstname.Text;
+            String lastName = txt_lastname.Text;
+            DateTime dateOfBirth = datepick.Value;
+            String address = txt_address.Text;
+            string gender = selectedValue;
+            string emails = txt_email.Text;
+            //int mobilePhoneNo = int.Parse(txt_mobileno.Text);
+            // int homePhoneNo = int.Parse(txtHomeNo.Text);
+            string parentName = txtParentname.Text;
+            string nic = txt_nic.Text;
+            //parentContactNo = int.Parse(txt_parentContactNo.Text);
+
+            //checks values
+            Debug.WriteLine(regNo);
+            Debug.WriteLine(firstName);
+            Debug.WriteLine(lastName);
+            Debug.WriteLine(dateOfBirth);
+            Debug.WriteLine(address);
+            Debug.WriteLine(gender);
+            Debug.WriteLine(emails);
+            //  Debug.WriteLine(mobilePhoneNo);
+            //  Debug.WriteLine(homePhoneNo);
+            Debug.WriteLine(parentName);
+            Debug.WriteLine(nic);
+            //Debug.WriteLine(parentContactNo);
+
+            //update querry
+            string updateQuerry = "UPDATE Registration SET regNo = @Value1, firstName=@Value2, lastName=@Value3, dateOfBirth=@Value4, address=@Value5, gender=@Value6, email=@Value7, parentName=@Value10, nic=@Value11)";
+            SqlCommand cmd = new SqlCommand(updateQuerry, conn);
+
+            //assign values
+            cmd.Parameters.AddWithValue("@Value1", regNo);
+            cmd.Parameters.AddWithValue("@Value2", firstName);
+            cmd.Parameters.AddWithValue("@Value3", lastName);
+            cmd.Parameters.AddWithValue("@Value4", dateOfBirth);
+            cmd.Parameters.AddWithValue("@Value5", address);
+            cmd.Parameters.AddWithValue("@Value6", gender);
+            cmd.Parameters.AddWithValue("@Value7", emails);
+            //cmd.Parameters.AddWithValue("@Value8", mobilePhoneNo);
+            //cmd.Parameters.AddWithValue("@Value9", homePhoneNo);
+            cmd.Parameters.AddWithValue("@Value10", parentName);
+            cmd.Parameters.AddWithValue("@Value11", nic);
+            //cmd.Parameters.AddWithValue("@Value12", parentContactNo);
+
+            try
+            {
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Successfully added");
+            }
+            catch
+            {
+                MessageBox.Show("Record not added! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
+
 
         }
 
@@ -104,19 +166,23 @@ namespace Login___Skill_International
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String regNo = combo_regno.Text;
+            
+
+
+            int regNo =  int.Parse(combo_regno.Text);
             String firstName = txt_firstname.Text;
             String lastName = txt_lastname.Text;
-            String dateOfBirth = datepick.Text;
+            DateTime dateOfBirth = datepick.Value;
             String address = txt_address.Text;
             string gender = selectedValue;
             string emails = txt_email.Text;
-            String mobilePhoneNo = txt_mobileno.Text;
-            string homePhoneNo = txtHomeNo.Text;
+            //int mobilePhoneNo = int.Parse(txt_mobileno.Text);
+           // int homePhoneNo = int.Parse(txtHomeNo.Text);
             string parentName = txtParentname.Text;
             string nic = txt_nic.Text;
-            string parentContactNo = txt_parentContactNo.Text;
+            //parentContactNo = int.Parse(txt_parentContactNo.Text);
 
+            //checks values
             Debug.WriteLine(regNo);
             Debug.WriteLine(firstName);
             Debug.WriteLine(lastName);
@@ -124,12 +190,52 @@ namespace Login___Skill_International
             Debug.WriteLine(address);
             Debug.WriteLine(gender);
             Debug.WriteLine(emails);
-            Debug.WriteLine(mobilePhoneNo);
-            Debug.WriteLine(homePhoneNo);
+          //  Debug.WriteLine(mobilePhoneNo);
+          //  Debug.WriteLine(homePhoneNo);
             Debug.WriteLine(parentName);
             Debug.WriteLine(nic);
-            Debug.WriteLine(parentContactNo);
-            Debug.WriteLine(firstName);
+           //Debug.WriteLine(parentContactNo);
+            
+
+            // insert 
+            string insertQuerry = "INSERT INTO Registration (regNo, firstName, lastName, dateOfBirth, address, gender, email, parentName, nic) VALUES (@Value1, @value2, @value3, @value4, @value5, @value6, @value7, @value10, @value11)";
+            SqlCommand cmd = new SqlCommand(insertQuerry, conn);
+
+            //, homePhone, parentName, nic, contactNo
+            //, @value8, @value9, @value10, @value11, @value12
+
+            //assign values
+            cmd.Parameters.AddWithValue("@Value1", regNo);
+            cmd.Parameters.AddWithValue("@Value2", firstName);
+            cmd.Parameters.AddWithValue("@Value3", lastName);
+            cmd.Parameters.AddWithValue("@Value4", dateOfBirth);
+            cmd.Parameters.AddWithValue("@Value5", address);
+            cmd.Parameters.AddWithValue("@Value6", gender);
+            cmd.Parameters.AddWithValue("@Value7", emails);
+            //cmd.Parameters.AddWithValue("@Value8", mobilePhoneNo);
+            //cmd.Parameters.AddWithValue("@Value9", homePhoneNo);
+            cmd.Parameters.AddWithValue("@Value10", parentName);
+            cmd.Parameters.AddWithValue("@Value11", nic);
+            //cmd.Parameters.AddWithValue("@Value12", parentContactNo);
+
+
+
+            try
+            { 
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                MessageBox.Show("Successfully added");
+            }
+            catch
+            {
+
+                MessageBox.Show("Record not added! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                conn.Close();
+            }
 
         }
 
