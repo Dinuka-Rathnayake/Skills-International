@@ -100,6 +100,7 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Student Registration";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // combo_regno
             // 
@@ -137,6 +138,7 @@
             this.btn_clear.TabIndex = 4;
             this.btn_clear.Text = "Clear";
             this.btn_clear.UseVisualStyleBackColor = true;
+            this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
             // groupBox4
             // 
@@ -246,6 +248,7 @@
             this.txt_mobileno.Name = "txt_mobileno";
             this.txt_mobileno.Size = new System.Drawing.Size(106, 27);
             this.txt_mobileno.TabIndex = 10;
+            this.txt_mobileno.TextChanged += new System.EventHandler(this.txt_mobileno_TextChanged);
             // 
             // txtHomeNo
             // 
@@ -427,6 +430,7 @@
             this.linkLabel_Exit.TabIndex = 7;
             this.linkLabel_Exit.TabStop = true;
             this.linkLabel_Exit.Text = "Exit";
+            this.linkLabel_Exit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_Exit_LinkClicked);
             // 
             // linkLabel_logout
             // 
@@ -437,6 +441,7 @@
             this.linkLabel_logout.TabIndex = 8;
             this.linkLabel_logout.TabStop = true;
             this.linkLabel_logout.Text = "Logout";
+            this.linkLabel_logout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel_logout_LinkClicked);
             // 
             // RegistrationForm
             // 
@@ -449,6 +454,7 @@
             this.Controls.Add(this.label1);
             this.Name = "RegistrationForm";
             this.Text = "RegistrationForm";
+            this.Load += new System.EventHandler(this.RegistrationForm_Load_1);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox4.ResumeLayout(false);

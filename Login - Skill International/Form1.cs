@@ -37,7 +37,11 @@ namespace Login___Skill_International
 
         private void button1_Click(object sender, EventArgs e)
         {
+            txt_username.Clear();
+            txt_password.Clear();
 
+            //focus
+            txt_username.Focus();
         }
 
         private void label4_Click(object sender, EventArgs e)
