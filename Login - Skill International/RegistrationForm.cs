@@ -125,13 +125,13 @@ namespace Login___Skill_International
             {
                 conn.Open();
                 cmd1.ExecuteNonQuery();
-                
-                MessageBox.Show("Successfully added");
+
+                MessageBox.Show("Record Updated Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {
 
-                MessageBox.Show("Record not added! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Record Not Updated", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -162,7 +162,12 @@ namespace Login___Skill_International
                 conn.Close();
                 if (rowsAffected > 0)
                 {
-                    MessageBox.Show("Are You sure, Do you Really want to Delete this Record", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show("Are You sure, Do you Really want to Delete this Record...?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                    if (result == DialogResult.Yes)
+                    {
+                        MessageBox.Show("Record Deleted Successfully", "Success",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     LoadData();
                 }
                 else
@@ -378,12 +383,12 @@ namespace Login___Skill_International
                 conn.Open();
                 cmd.ExecuteNonQuery();
                 conn.Close();
-                MessageBox.Show("Record Added Successfully ");
+                MessageBox.Show("Record Added Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch
             {
 
-                MessageBox.Show("Record not added! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Record Not Added", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
 
